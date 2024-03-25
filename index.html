@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: rgb(0, 62, 114);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .flex {
+        color: white; /* Beyaz renk */
+        font-size: 150%; /* %80 büyüklük */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .flex img {
+        width: 45%;
+        max-width: 100%;
+        max-height: 100%;
+        margin-bottom: 45px; /* Resim ile metin arasına boşluk bırakmak için */
+      }
+
+      .Antalya {
+        margin-top: auto; /* En üst kısmı hedefleyerek üste çıkarır */
+        font-family: "NotoIKEA Sans Bold", sans-serif; /* Yazı tipini NotoIKEA Sans Bold olarak ayarlar */
+        margin-bottom: 0; /* Alt kısımda ek boşluk olmaması için */
+        padding: 0; /* Ek iç içe boşluk olmaması için */
+        margin-top: 0%;
+      }
+
+      .btn-container {
+        margin-top: auto; /* En alt kısmı hedefleyerek alt kısma çıkarır */
+        display: flex;
+        justify-content: center; /* Yatayda ortalamak için */
+      }
+
+      .btn-primary {
+        border-radius: 50%; /* Kenar yarıçapını %50 yapar */
+        background-color: black; /* Arka plan rengini siyah yapar */
+        margin-bottom: 5px;
+        width: 50%; /* Butonun genişliğini %50 yapar */
+        height: auto; /* Yüksekliği otomatik olarak ayarlar */
+        font-size: 14px; /* Yazı boyutunu 14 piksel yapar */
+      }
+
+      a.ghost {
+        display: table;
+        background-color: transparent;
+        background-image: linear-gradient(
+          to bottom,
+          transparent 50%,
+          white 50%
+        );
+        background-size: 100% 200%;
+        margin-bottom: 100px;
+        text-transform: uppercase;
+        font: 600 11px "NotoIKEA Sans Bold", sans-serif; /* Yazı tipini NotoIKEA Sans Bold olarak ayarlar */
+        letter-spacing: 2px;
+        color: white;
+        border: 1px solid black;
+        border-radius: 35px;
+        padding: 15px 35px; /* Yüksekliği küçültmek için padding değerlerini ayarla */
+        text-decoration: none;
+        transition: background-position 0.6s, color 0.6s, box-shadow 0.6s,
+          margin-top 0.6s;
+        background-color: black;
+      }
+
+      .header {
+        width: 1000%;
+        height: 35%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header"></div>
+    <div class="flex">
+      <img src="IKEA.png" alt="IKEA logo" />
+      <div class="Antalya">Antalya</div>
+    </div>
+
+    <div class="btn-container">
+      <a class="ghost" href="signin.html">Ağ kimliği İle Oturum Aç</a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

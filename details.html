@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SalesGL Details Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <style>
+    table {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th,
+    td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .table-danger {
+      background-color: #f8d7da; /* Kırmızı arka plan */
+    }
+    .table-success {
+      background-color: #d4edda; /* Yeşil arka plan */
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg" style="background-color: rgb(0, 62, 114)">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="color: white">Antalya IKEA Sales GL</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="https://iwww.ikea.com.tr/">İntranet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Kısayol</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Detaylar</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Performans </a></li>
+              <li><a class="dropdown-item" href="#">Artikel Takip</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Diğerleri</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-3">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        HFB
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <!-- Dropdown içeriği -->
+        <a class="dropdown-item" href="#">1</a>
+        <a class="dropdown-item" href="#">2</a>
+        <a class="dropdown-item" href="#">3</a>
+        <a class="dropdown-item" href="#">4</a>
+        <a class="dropdown-item" href="#">5</a>
+        <a class="dropdown-item" href="#">6</a>
+        <a class="dropdown-item" href="#">7</a>
+        <a class="dropdown-item" href="#">8</a>
+        <a class="dropdown-item" href="#">9</a>
+        <a class="dropdown-item" href="#">10</a>
+        <a class="dropdown-item" href="#">11</a>
+        <a class="dropdown-item" href="#">12</a>
+        <a class="dropdown-item" href="#">13</a>
+        <a class="dropdown-item" href="#">14</a>
+        <a class="dropdown-item" href="#">15</a>
+        <a class="dropdown-item" href="#">16</a>
+        <a class="dropdown-item" href="#">17</a>
+        <a class="dropdown-item" href="#">18</a>
+      </div>
+    </div>
+
+    <table id="myTable">
+      <thead>
+        <tr>
+          <th>HFB</th>
+          <th>Antalya 553</th>
+          <th>Bursa 220</th>
+          <th>Ciro farkı</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Tablo içeriği burada JavaScript ile doldurulacak -->
+      </tbody>
+    </table>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // ProductList.json dosyasından verileri al
+      fetch("ProductList.json")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data); // Verileri konsola yazdır
+    
+          const groupedData = {};
+    
+          // JSON verilerini grupla
+          data.forEach((item) => {
+            const hfb = item.HFB;
+            let ciroAntalya = item["553CİRO"];
+            let ciroBursa = item["220CİRO"];
+    
+            // Eğer ciro değeri null ise veya "-" ise, 0 olarak ayarla
+            if (ciroAntalya === null || ciroAntalya === "-") {
+              ciroAntalya = 0;
+            } else {
+              // "-" değeri yoksa virgülü noktaya çevir ve float'a dönüştür
+              ciroAntalya = parseFloat(ciroAntalya.replace(",", "."));
+            }
+    
+            // Eğer ciro değeri null ise veya "-" ise, 0 olarak
+            // Eğer ciro değeri null ise veya "-" ise, 0 olarak ayarla
+            if (ciroBursa === null || ciroBursa === "-") {
+              ciroBursa = 0;
+            } else {
+              // "-" değeri yoksa virgülü noktaya çevir ve float'a dönüştür
+              ciroBursa = parseFloat(ciroBursa.replace(",", "."));
+            }
+    
+            if (!groupedData[hfb]) {
+              groupedData[hfb] = {
+                ciroAntalya: 0,
+                ciroBursa: 0
+              };
+            }
+    
+            groupedData[hfb].ciroAntalya += ciroAntalya;
+            groupedData[hfb].ciroBursa += ciroBursa;
+          });
+    
+          // Tabloya verileri ekle
+          const tableBody = document.querySelector("#myTable tbody");
+          for (const hfb in groupedData) {
+            // Ciro farkını hesapla
+            const ciroFarki = groupedData[hfb].ciroAntalya - groupedData[hfb].ciroBursa;
+    
+            // Satır arka plan rengini belirle
+            let rowClass = '';
+            if (ciroFarki < 0) {
+              rowClass = 'table-danger'; // Ciro farkı negatif ise kırmızı
+            } else if (ciroFarki > 0) {
+              rowClass = 'table-success'; // Ciro farkı pozitif ise yeşil
+            }
+    
+            const row = `<tr class="${rowClass}">
+                          <td>${hfb}</td>
+                          <td>${groupedData[hfb].ciroAntalya.toFixed(2)}</td>
+                          <td>${groupedData[hfb].ciroBursa.toFixed(2)}</td>
+                          <td>${ciroFarki.toFixed(2)}</td>
+                        </tr>`;
+            tableBody.innerHTML += row;
+          }
+        })
+        .catch((error) => console.error("Hata:", error)); // Hata durumunda konsola yazdır
+    </script>
+    
+  </body>
+</html>

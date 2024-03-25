@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camera</title>
+  </head>
+  <body>
+    <video id="preview" style="width: 100%; height: 100%"></video>
+    <script src="instascan.min.js"></script>
+    <script>
+      async function startCamera() {
+        try {
+          const previewVideo = document.getElementById("preview");
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+          });
+          previewVideo.srcObject = stream;
+          const scanner = new Instascan.Scanner({ video: previewVideo });
+          scanner.addListener("scan", function (content) {
+            alert("QR Code content: " + content);
+          });
+          Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+              scanner.start(cameras[0]);
+            } else {
+              console.error("No cameras found.");
+            }
+          });
+        } catch (error) {
+          console.error("Failed to start camera:", error);
+        }
+      }
+      startCamera();
+    </script>
+  </body>
+</html>
