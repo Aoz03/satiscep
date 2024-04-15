@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antalya IKEA Sales GL</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* Kartları yan yana sıralamak ve her bir satırda üç kart bulunacak şekilde düzenleme */
+      #cardContainerpic {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* İki kart arasındaki boşluk */
+        justify-content: center; /* Yatay eksende ortalamak için */
+        max-width: 50%;
+      }
+      .card-img-top {
+        max-width: 70%; /* Resmin maksimum genişliğini belirle */
+        height: auto; /* Orantılı olarak yüksekliği ayarla */
+      }
+      /* Ekran genişliği 550 pikselden küçükse tablonun genişliğini %90 yap */
+
+      @media (max-width: 550px) {
+        table {
+          width: 90%;
+        }
+        .card {
+          width: calc(
+            100% - 20px
+          ); /* Mobil cihazlarda iki sütun olacak şekilde ayarla */
+        }
+      }
+      /* Kartların genişliğini ayarla */
+      .card {
+        width: 18rem;
+        margin-bottom: 20px;
+      }
+      .container {
+        width: 100%; /* Container'ı sayfanın tamamını kaplayacak şekilde ayarla */
+      }
+      .cardContainer {
+        width: 100%;
+        background-color: black;
+      }
+      /* Mobil cihazlar için stil ayarları */
+      @media (max-width: 991px) {
+        /* Navbar arkaplan rengini tam ekran yap */
+        .bg-warning {
+          width: 90%;
+        }
+        /* Navbar marka adının boyutunu küçült */
+        .navbar-brand {
+          font-size: 18px;
+        }
+        /* Navbar dropdown menüsü */
+        .navbar-nav .dropdown-menu {
+          position: static;
+          float: none;
+          width: auto;
+          color: rgb(0, 62, 114);
+        }
+        /* Navbar dropdown menüsü elemanları */
+        .navbar-nav .dropdown-menu .dropdown-item {
+          display: block;
+        }
+        /* Form elemanlarının aralıklarını ayarla */
+        .form-control {
+          margin-right: 0;
+        }
+        /* Kart içeriğinin boyutunu küçült */
+        .card-text {
+          font-size: 14px;
+        }
+      }
+      /* Genel tablo stilini belirle */
+      table {
+        font-family: Arial, sans-serif;
+        border-collapse: collapse;
+        width: 95%;
+        margin: 0 auto; /* Sayfa genişliğinin ortasına hizala */
+      }
+      /* Tablo hücreleri için stil */
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      /* Tablo başlığı için arkaplan rengi */
+      th {
+        background-color: #f2f2f2;
+      }
+      /* Çift satırlar için arka plan rengi */
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      /* Tablo ve containerlar için genel stiller */
+      .table-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      /* Tablo için genel stil */
+      .table {
+        width: 100%;
+      }
+      /* Container için genel stil */
+      .container {
+        width: 100%;
+        margin: 0 auto;
+      }
+      .d-flex1 {
+        align-items: center; /* Yatay hizalamayı sağlar */
+        height: 100vh; /* Sayfanın tamamını kaplar */
+        justify-content: center; /* Yatay eksende ortalamayı sağlar */
+      }
+      .container-fluid {
+        max-width: 600px; /* İstenilen maksimum genişliği ayarlar */
+        width: 100%; /* Genişliği tam ekran olarak ayarlar */
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+    class="navbar navbar-expand-lg"
+    style="background-color: rgb(0, 62, 114)"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home.html" style="color: white"
+        >Bayrampaşa IKEA Sales Dashboard</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Anasayfa</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  
+                <li class="nav-item">
+                  <a class="nav-link active" href="bayrampasa.html"
+                    >Bayrampaşa</a
+                  >
+                </li>
+                <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="details.html"
+                  >
+                    Performans</a
+                  >
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Detaylar
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Performans </a></li>
+                    <li></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#">Diğerleri</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" aria-disabled="true"
+                    >Disabled</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </nav>
+    <br /><br />
+    <div>
+      <form class="d-flex" id="searchForm" role="search">
+        <input
+          id="searchInput"
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+        <!-- <button id="startButton">Qr Okut</button> -->
+      </form>
+      <br />
+      <!-- Kamera önizlemesi ve kameraların listesi -->
+    </div>
+
+    <div class="container" id="cardContainerpic">
+      <div class="card">
+        <img
+          id="searchImage"
+          src=""
+          alt=""
+          data-bs-toggle="modal"
+          data-bs-target="#imageModal"
+        />
+        <div class="card-body">
+          <p class="card-text">Artikel no : <span id="searchValue"></span></p>
+          <p><a id="dynamicLink1" href="#">Pia Facts</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fotoğraf için modal -->
+    <div
+      class="modal fade"
+      id="imageModal"
+      tabindex="-1"
+      aria-labelledby="imageModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="imageModalLabel">Artikel Fotoğrafı</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img id="modalImage" src="" class="img-fluid" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="container" id="cardContainerpic">
+      <div class="card">
+        <img id="searchImage" src="" alt="" />
+        <div class="card-body">
+          <p class="card-text">Artikel no : <span id="searchValue"></span></p>
+          <p><a id="dynamicLink1" href="#">Pia Facts</a></p>
+        </div>
+      </div> -->
+    <!-- <div class="card">
+        <div class="card-body">
+          <p class="card-text">Artikel: <span id="productNumber"></span></p>
+          <p class="card-text">Açıklama : <span id="description"></span></p>
+          <p class="card-text">Aile : <span id="family"></span></p>
+          <p class="card-text">AWS : <span id="AWS"></span></p>
+          <p class="card-text">EWS : <span id="EWS"></span></p>
+          <p class="card-text">T2 Ciro : <span id="ciro553"></span></p>
+          <p class="card-text">SOH : <span id="SOH"></span></p>
+          <p class="card-text">
+            Fiyat Seviyesi : <span id="PriceLevel"></span>
+          </p>
+          <p class="card-text">BenchMark Fark : <span id="benchmark"></span></p>
+          <p class="card-text">WOS: <span id="WOS"></span></p>
+          <p><a id="dynamicLink2" href="#">Pia Facts</a></p>
+        </div>
+      </div>
+    </div> -->
+    <div class="d-flex">
+      <table id="myTable" class="has-content">
+        <tr>
+          <th>Özellik</th>
+          <th>Değer</th>
+        </tr>
+        <tr>
+          <td>Artikel</td>
+          <td><span id="productNumber"></span></td>
+        </tr>
+        <tr>
+          <td>Açıklama</td>
+          <td><span id="description"></span></td>
+        </tr>
+        <tr>
+          <td>Aile</td>
+          <td><span id="family"></span></td>
+        </tr>
+        <tr>
+          <td>AWS</td>
+          <td><span id="AWS"></span></td>
+        </tr>
+        <tr>
+          <td>EWS</td>
+          <td><span id="EWS"></span></td>
+        </tr>
+        <tr>
+          <td>T2 Ciro</td>
+          <td><span id="ciro194"></span></td>
+        </tr>
+        <tr>
+          <td>SOH</td>
+          <td><span id="SOH"></span></td>
+        </tr>
+        <tr>
+          <td>Fiyat Seviyesi</td>
+          <td><span id="PriceLevel"></span></td>
+        </tr>
+        <tr>
+          <td>BenchMark Fark</td>
+          <td><span id="benchmark"></span></td>
+        </tr>
+
+        <tr>
+          <td>WOS</td>
+          <td><span id="WOS"></span></td>
+        </tr>
+        <tr>
+          <td>Stil Grubu</td>
+          <td><span id="Stil"></span></td>
+        </tr>
+        <tr>
+          <td>Fonksiyon</td>
+          <td><span id="FONKSİYON_GRUPLAMA"></span></td>
+        </tr>
+        <!-- <tr>
+          <td>FKS Var Mı?</td>
+          <td><span id="FKMVarMı?"></span></td>
+        </tr> -->
+        <tr>
+          <td>Pia Facts</td>
+          <td><a id="dynamicLink2" href="#">Pia Facts</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <br /><br />
+    <div class="d-flex1">
+      <div class="container-fluid" id="cardContainer">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">IKEA Antalya</h5>
+            <p class="card-text">
+              Bu site IKEA Antalya Sales GL ekibi tarafından hazırlanmıştır
+            </p>
+            <p class="card-text">
+              <small class="text-body-secondary">&copy; Ali ÖZ </small>
+            </p>
+            <img src="logo.png" class="card-img-top" alt="..." />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document
+        .getElementById("searchForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Sayfanın yenilenmesini önler
+          var searchValue = document.getElementById("searchInput").value;
+          var imageUrl =
+            "https://aozbucket.s3.eu-north-1.amazonaws.com/" +
+            searchValue +
+            ".jpg";
+
+          // Bağlantıyı güncelle
+          var dynamicLink1 = document.getElementById("dynamicLink1");
+          dynamicLink1.href =
+            "https://piafacts.ikea.net/facts/" +
+            encodeURIComponent(searchValue);
+          dynamicLink1.textContent = "Pia Facts link - " + searchValue;
+
+          // Diğer işlemler
+          document.getElementById("searchImage").src = imageUrl;
+          document.getElementById("searchValue").textContent = searchValue;
+
+          // Ürün bilgilerini getirme işlemi
+          fetch("ProductListBayrampasa.json")
+            .then((response) => response.json())
+            .then((data) => {
+              var matchedProduct = data.find(
+                (product) => product.NO === searchValue
+              );
+              if (!matchedProduct) {
+                // Eğer ürün numarasına göre ürün bulunamazsa, açıklamaya göre arama yap
+                matchedProduct = data.find((product) =>
+                  product.AÇIKLAMA.toLowerCase().includes(
+                    searchValue.toLowerCase()
+                  )
+                );
+              }
+              if (matchedProduct) {
+                document.getElementById("productNumber").textContent =
+                  matchedProduct.NO;
+                document.getElementById("description").textContent =
+                  matchedProduct.AÇIKLAMA;
+                document.getElementById("AWS").textContent = matchedProduct.AWS;
+                document.getElementById("EWS").textContent = matchedProduct.EWS;
+                // Ciro değerini uygun formatta gösterme
+                var formattedCiro =
+                  "₺ " +
+                  matchedProduct["194CİRO"].toLocaleString("tr-TR", {
+                    minimumFractionDigits: 2,
+                  });
+                document.getElementById("ciro194").textContent = formattedCiro;
+                document.getElementById("family").textContent =
+                  matchedProduct.AİLE;
+                document.getElementById("SOH").textContent = matchedProduct.SOH;
+                document.getElementById("PriceLevel").textContent =
+                  matchedProduct.PriceLeve;
+                var formattedFark =
+                  "₺ " +
+                  matchedProduct["FARK"].toLocaleString("tr-TR", {
+                    minimumFractionDigits: 2,
+                  });
+                document.getElementById("benchmark").textContent =
+                  formattedFark;
+
+                document.getElementById("WOS").textContent = matchedProduct.WOS;
+                document.getElementById("Stil").textContent =
+                  matchedProduct.Stylecode;
+                document.getElementById("FONKSİYON_GRUPLAMA").textContent =
+                  matchedProduct.FONKSİYON_GRUPLAMA;
+                document.getElementById("FKMVarMı?").textContent =
+                  matchedProduct.FKMVarMı;
+              } else {
+                // Kullanıcı dostu hata mesajını göster
+                document.getElementById("productNumber").textContent = "";
+                document.getElementById("description").textContent = "";
+                document.getElementById("AWS").textContent = "";
+                document.getElementById("EWS").textContent = "";
+                document.getElementById("ciro553").textContent = "";
+                document.getElementById("family").textContent = "";
+                document.getElementById("SOH").textContent = "";
+                document.getElementById("capacity").textContent = "";
+                document.getElementById("benchmark").textContent = "";
+                document.getElementById("WOS").textContent = "";
+                alert("Ürün bulunamadı.");
+              }
+            })
+            .catch((error) => console.error("Hata:", error));
+        });
+
+      // Fotoğraf üzerine tıklama olayını dinle
+      document
+        .getElementById("searchImage")
+        .addEventListener("click", function () {
+          // Modal içindeki fotoğrafı güncelle
+          document.getElementById("modalImage").src =
+            document.getElementById("searchImage").src;
+          // Modalı aç
+          var myModal = new bootstrap.Modal(
+            document.getElementById("imageModal")
+          );
+          myModal.show();
+        });
+
+      // Kamerayı başlatma butonuna tıklama olayı
+      document
+        .getElementById("startButton")
+        .addEventListener("click", function () {
+          window.open("camera.html", "Camera", "width=600,height=600");
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instascan/1.0.0/instascan.min.js"></script>
+  </body>
+</html>
